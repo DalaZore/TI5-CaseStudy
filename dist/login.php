@@ -32,6 +32,7 @@
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
+    <a href="login.php" class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <a class="navbar-brand" href="#">WebShop Logo Placeholder</a>
       <ul class="navbar-nav mr-auto">
@@ -62,35 +63,7 @@
 
   <!-- Content begin -->
   <br>
-  <div class="card text-center">
-    <div class="card-header">
-      Featured
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    <div class="card-footer text-muted">
-      2 days ago
-    </div>
-  </div>
 
-  <br>
-
-  <div class="card text-center">
-    <div class="card-header">
-      Featured
-    </div>
-    <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-    <div class="card-footer text-muted">
-      2 days ago
-    </div>
-  </div>
 
 
   <script src="js/vendor/modernizr-3.6.0.min.js"></script>
