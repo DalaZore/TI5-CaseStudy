@@ -32,7 +32,7 @@
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
-    <a href="login.php" class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</a>
+      <a href="login.php" class="btn btn-outline-success my-2 my-sm-0">Login</a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <a class="navbar-brand" href="#">WebShop Logo Placeholder</a>
       <ul class="navbar-nav mr-auto">
@@ -70,7 +70,7 @@
     <div class="card-body">
       <h5 class="card-title">Special title treatment</h5>
       <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <a href="#" class="btn btn-outline-success my-2 my-sm-0">Go somewhere</a>
     </div>
     <div class="card-footer text-muted">
       2 days ago
@@ -86,7 +86,7 @@
     <div class="card-body">
       <h5 class="card-title">Special title treatment</h5>
       <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <a href="#" class="btn btn-outline-success my-2 my-sm-0">Go somewhere</a>
     </div>
     <div class="card-footer text-muted">
       2 days ago

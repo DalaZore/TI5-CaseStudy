@@ -32,8 +32,8 @@
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
-    <a href="login.php" class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <a href="login.php" class="btn btn-outline-success my-2 my-sm-0">Login</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <a class="navbar-brand" href="#">WebShop Logo Placeholder</a>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
