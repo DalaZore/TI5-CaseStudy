@@ -1,3 +1,20 @@
+<?php
+
+require_once("php/session.php");
+
+require_once("php/func.php");
+$auth_user = new USER();
+$user_req = new USER();
+
+$user_id = $_SESSION['user_session'];
+
+$stmt = $auth_user->runQuery("SELECT * FROM customer WHERE id=:id");
+$stmt->execute(array(":id"=>$user_id));
+
+$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+
+?>
+
 <!doctype html>
 <html class="no-js" lang="">
 
@@ -60,6 +77,7 @@
     </div>
   </nav>
   <!-- Navbar End -->
+
 
   <!-- Content begin -->
   <br>
