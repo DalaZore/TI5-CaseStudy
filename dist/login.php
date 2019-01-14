@@ -47,9 +47,7 @@
     <div class="login-form">
 
         <div class="main-div">
-            <a href="index.php">
-                <img src="img/back-arrow.png" id="back-arrow"/>
-            </a>
+            <a href="index.php"><i class="far fa-arrow-alt-circle-left"></i></a>
             <div class="panel">
                 <h2>User Login</h2>
                 <p>Please enter your email and password</p>
@@ -72,7 +70,7 @@
     </div>
 </div>
 
-  <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+<!--  <script type="text/javascript" src="assets/js/bootstrap.js"></script>-->
 
 
   <script src="js/vendor/modernizr-3.6.0.min.js"></script>
