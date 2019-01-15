@@ -110,12 +110,6 @@ html#RegisterForm, body#RegisterForm {
     height: 100%;
 }
 
-img#back-arrow {
-    height: 45px;
-    position: absolute;
-    margin: -45px 0px 0px -205px;
-}
-
 .panel h2 {
     color: #444444;
     font-size: 18px;
@@ -143,12 +137,11 @@ img#back-arrow {
     border-radius: 2px;
     margin: 10px auto 30px;
     min-width: 421px;
-    max-width: 38%;
+    max-width: 50%;
     padding: 50px 70px 70px 71px;
 }
 .glyphico {
-    margin: -35px 0px 0px -200px;
-    position:absolute;
+    margin: -100px 0px 0px -500px;
     color: #28a745;
 }
 
@@ -187,18 +180,6 @@ img#back-arrow {
 .register-form .btn.btn-primary.reset {
     background: #ff9900 none repeat scroll 0 0;
 }
-
-.back {
-    text-align: left;
-    margin-top: 10px;
-}
-
-.back a {
-    color: #444444;
-    font-size: 13px;
-    text-decoration: none;
-}
-
 
 /* ==========================================================================
    Helper classes

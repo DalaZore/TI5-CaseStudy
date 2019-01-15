@@ -55,12 +55,33 @@
             </div>
             <form id="Register">
                 <div class="form-group">
-                    <input type="email" class="form-control" id="registerMail" placeholder="Email Address">
-
+                    <input type="text" class="form-control" id="registerUname" placeholder="User name">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" id="registerMail" placeholder="Email address">
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control" id="registerPassword" placeholder="Password">
                 </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" id="repeatPassword" placeholder="Repeat password">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="registerGivenName" placeholder="Given name">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="registerName" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="registerAddress" placeholder="Address">
+                </div>
+                <div class="form-group">
+                    <input type="number" class="form-control" id="registerPLZ" placeholder="PLZ">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="registerCity" placeholder="City">
+                </div>
+
                 <div class="alreadyacc">
                     <a href="login.php">Already have an Account?</a>
                 </div>
