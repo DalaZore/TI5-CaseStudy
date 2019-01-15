@@ -146,6 +146,11 @@ img#back-arrow {
     max-width: 38%;
     padding: 50px 70px 70px 71px;
 }
+.glyphico {
+    margin: -35px 0px 0px -200px;
+    position:absolute;
+    color: #28a745;
+}
 
 .register-form .form-group {
     margin-bottom: 10px;
@@ -160,6 +165,7 @@ img#back-arrow {
     font-size: 14px;
     text-decoration: underline;
     float: right;
+    margin-bottom: 30px;
 }
 
 .register-form .btn.btn-primary {
@@ -176,11 +182,6 @@ img#back-arrow {
 .register-form .btn.btn-primary:hover {
     background: #28a745 none repeat scroll 0 0;
     color: #ffffff;
-}
-
-.forgot {
-    text-align: left;
-    margin-bottom: 30px;
 }
 
 .register-form .btn.btn-primary.reset {

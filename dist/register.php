@@ -48,7 +48,7 @@
     <div class="register-form">
 
         <div class="main-div">
-            <i class="far fa-arrow-alt-circle-left"><a href="index.php"/></i>
+            <a href="index.php" class="glyphico"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
             <div class="panel">
                 <h2>Register</h2>
                 <p>Please fill everything in</p>

@@ -202,6 +202,11 @@ img#back-arrow {
     text-decoration: none;
 }
 
+.glyphico {
+    margin: -35px 0px 0px -200px;
+    position:absolute;
+    color: #28a745;
+}
 
 
 /* ==========================================================================
