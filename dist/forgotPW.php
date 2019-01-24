@@ -50,21 +50,14 @@
         <div class="main-div">
             <a href="index.php" class="glyphico"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
             <div class="panel">
-                <h2>User Login</h2>
-                <p>Please enter your email and password</p>
+                <h2>Reset password</h2>
+                <p>Please enter your email</p>
             </div>
                 <form id="Login">
                     <div class="form-group">
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Email Address">
+                        <input type="email" class="form-control" id="resetEmail" placeholder="Email Address">
                     </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                    </div>
-                    <div class="forgot">
-                        <a href="forgotPW.php">Forgot password?</a>
-                        <a id="register-link" href="register.php">Register now</a>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary">Reset password</button>
                 </form>
             </div>
         </div>

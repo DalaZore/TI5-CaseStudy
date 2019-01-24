@@ -1,7 +1,5 @@
 <?php
-//
-//require_once("php/session.php");
-//
+
 //require_once("php/func.php");
 //$auth_user = new USER();
 //$user_req = new USER();

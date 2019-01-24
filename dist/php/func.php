@@ -19,7 +19,32 @@ class USER
 		$stmt = $this->conn->prepare($sql);
 		return $stmt;
 	}
-	
+
+    public function doLogin($uname,$email,$upass)
+    {
+        try
+        {
+            $stmt = $this->conn->prepare("SELECT userID, uname, email, password FROM users WHERE uname=:uname OR email=:email ");
+            $stmt->execute(array(':uname'=>$uname, ':email'=>$email));
+            $userRow=$stmt->fetch(PDO::FETCH_ASSOC);
+            if($stmt->rowCount() == 1)
+            {
+                if(password_verify($upass, $userRow['password']))
+                {
+                    $_SESSION['user_session'] = $userRow['userID'];
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
 	public function register($uname,$umail,$upass,$ugivename,$usurname)
 	{
 		try
@@ -134,31 +159,7 @@ class USER
 		}				
 	}
 	
-	public function doLogin($uname,$umail,$upass)
-	{
-		try
-		{
-			$stmt = $this->conn->prepare("SELECT id, username, mail, pass FROM customer WHERE username=:uname OR mail=:umail ");
-			$stmt->execute(array(':uname'=>$uname, ':umail'=>$umail));
-			$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
-			if($stmt->rowCount() == 1)
-			{
-				if(password_verify($upass, $userRow['pass']))
-				{
-					$_SESSION['user_session'] = $userRow['id'];
-					return true;
-				}
-				else
-				{
-					return false;
-				}
-			}
-		}
-		catch(PDOException $e)
-		{
-			echo $e->getMessage();
-		}
-	}
+
 	
 	public function is_loggedin()
 	{
