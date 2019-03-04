@@ -1,2 +1,8 @@
 archive
 node_modules
+
+\.idea/deployment\.xml
+
+\.idea/webServers\.xml
+
+\.idea/workspace\.xml
