@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../TI3-Wochenmarkt/.idea/TI3-Wochenmarkt.iml" filepath="$PROJECT_DIR$/../TI3-Wochenmarkt/.idea/TI3-Wochenmarkt.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/untitled.iml" filepath="$PROJECT_DIR$/.idea/untitled.iml" />
     </modules>
   </component>

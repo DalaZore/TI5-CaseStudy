@@ -1,19 +1,26 @@
 <?php
-$host='localhost';
-$db = 'ti5-';
-$username = 'root';
-$password = '';
-$dsn= "mysql:host=$host;dbname=$db";
+class Database
+{
+    private $host = "localhost";
+    private $db_name = "ti5";
+    private $username = "root";
+    private $password = "";
+    public $conn;
 
-Try{
-    // create a PDO connection with the configuration data
-    $conn = new PDO($dsn, $username, $password);
+    public function dbConnection()
+    {
 
-    // display a message if connected to database successfully
-    if($conn){
+        $this->conn = null;
+        try
+        {
+            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        }
+        catch(PDOException $exception)
+        {
+            echo "Connection error: " . $exception->getMessage();
+        }
 
+        return $this->conn;
     }
-}catch (PDOException $e){
-    $e->getMessage();
-    // report error message
 }

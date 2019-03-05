@@ -1,19 +1,31 @@
 <?php
-//
-//require_once("php/session.php");
-//
-//require_once("php/func.php");
-//$auth_user = new USER();
-//$user_req = new USER();
-////
-//$user_id = $_SESSION['user_session'];
-////
-//$stmt = $auth_user->runQuery("SELECT * FROM users WHERE userID=:userID");
-//$stmt->execute(array(":userID"=>$user_id));
-////
-//$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
-////
+session_start();
+require_once("php\db_functions.php");
+$login = new userClass();
+
+if($login->is_loggedin()!="")
+{
+    $login->redirect('index.php');
+}
+
+if(isset($_POST['loginBTN']))
+{
+    $uname = strip_tags($_POST['inputEmail']);
+    $umail = strip_tags($_POST['inputEmail']);
+    $upass = strip_tags($_POST['inputPassword']);
+
+    if($login->userLogin($uname,$umail,$upass))
+    {
+        $login->redirect('index.php');
+    }
+    else
+    {
+        $error = "Wrong Details!";
+    }
+}
 ?>
+
+
 
 <!doctype html>
 <html id="LoginForm" class="no-js" lang="">
@@ -33,30 +45,42 @@
 <div class="container">
     <br/><br/>
     <div class="login-form">
-
         <div class="main-div">
             <a href="index.php" class="glyphico"><i class="far fa-arrow-alt-circle-left fa-2x"></i></a>
             <div class="panel">
                 <h2>User Login</h2>
                 <p>Please enter your email and password</p>
             </div>
-            <form id="Login">
+            <form id="Login" method="post">
                 <div class="form-group">
-                    <input type="email" class="form-control" id="inputEmail" placeholder="Email Address">
+                    <input type="email" class="form-control" name="inputEmail" placeholder="Email Address">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                    <input type="password" class="form-control" name="inputPassword" placeholder="Password">
                 </div>
                 <div class="forgot">
                     <a href="forgotPW.php">Forgot password?</a>
                     <a id="register-link" href="register.php">Register now</a>
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary" name="loginBTN">Login</button>
+                <div><br/>
+                    <?php
+                    if(isset($error))
+                    {
+                        ?>
+                        <div class="alert alert-danger">
+                            <i class="glyphicon glyphicon-warning-sign"></i> &nbsp; <?php echo $error; ?> !
+                        </div>
+                        <?php
+                    }
+                    ?>
+                </div>
             </form>
         </div>
     </div>
 </div>
 </div>
+
 
 </body>
 
