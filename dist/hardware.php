@@ -26,7 +26,7 @@ require_once("php/dbconnect.php");
 
 
 <!-- Content begin -->
-<?php include('php/frontpage.php'); ?>
+<?php include('php/hardware_page.php'); ?>
 
 </body>
 
