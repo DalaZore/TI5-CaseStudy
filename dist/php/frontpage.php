@@ -2,6 +2,8 @@
 $user_req = new userClass();
 $stmt = $user_req->runQuery("SELECT * FROM new_article");
 $stmt->execute();
+
+$rate = $user_req->getRate();
 ?>
 
 <br/><br/>
@@ -23,7 +25,7 @@ $stmt->execute();
             <img src="<?php echo($userReq['picture']);?>" class="article_image"/>
             <p class="card-text"><?php echo($userReq['description']);  ?></p>
 
-            <a href="php/addtocart.php?article=<?php echo($userReq['article_id']);?>" class="btn btn-outline-success my-2 my-sm-0" value="">Add to Shopping Cart</a>
+            <a href="addtocart.php?article=<?php echo($userReq['article_id']);?>" class="btn btn-outline-success my-2 my-sm-0" value="">Add to Shopping Cart</a>
         </div>
         <div class="card-footer text-muted">
             <?php if(($userReq['stock']) <=0)
@@ -33,9 +35,11 @@ $stmt->execute();
             else
             {
                 ?> in Stock (<?php echo($userReq['stock']);?>)
+
                 <?php
             }
             ?>
+            <br/> Price: <?php echo($userReq['price']*$rate);?> <?php echo($user_req->getCurrency());?>
         </div>
         <?php
     }

@@ -4,7 +4,7 @@ require_once("php/db_functions.php");
 $user_req = new userClass();
 require_once("php/dbconnect.php");
 
-
+$user_req->updateRate();
 ?>
 
 <!doctype html>

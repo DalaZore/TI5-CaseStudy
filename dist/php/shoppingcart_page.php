@@ -1,15 +1,18 @@
 <?php
 $user_req = new userClass();
-$stmt = $user_req->runQuery("SELECT * FROM software_windows");
-$stmt->execute();
+
+$stmt = $user_req->runQuery("SELECT * FROM shoppingcart_info WHERE customer_id =:customer_id");
+$stmt->execute(array(':customer_id'=>$_SESSION['user_session']));
+$total_price = 0;
+
+
 ?>
 
 <br/><br/>
 <div class="card text-center">
-
     <div class="card-header">
         <br/>
-        <h2>Windows Software</h2>
+        <h2>Shopping Cart</h2>
     </div>
     <?php
 
@@ -23,21 +26,21 @@ $stmt->execute();
             <img src="<?php echo($userReq['picture']);?>" class="article_image"/>
             <p class="card-text"><?php echo($userReq['description']);  ?></p>
 
-            <a href="addtocart.php?article=<?php echo($userReq['article_id']);?>" class="btn btn-outline-success my-2 my-sm-0" value="">Add to Shopping Cart</a>
         </div>
         <div class="card-footer text-muted">
-            <?php if(($userReq['stock']) <=0)
-            {
-                echo("not in Stock");
-            }
-            else
-            {
-                ?> in Stock (<?php echo($userReq['stock']);?>)
-                <?php
-            }
-            ?>
+
+         Quantity: <?php echo($userReq['quantity']);?>
+            <br/>
+         Price: <?php echo($userReq['price']);?> CHF.-
         </div>
         <?php
+        $total_price +=$userReq['price'];
     }
     ?>
+</div>
+<div class="card-body">
+    Total Price: <?php echo($total_price);?> CHF.-
+    <br/>
+    <a href="checkout.php" class="btn btn-outline-success my-2 my-sm-0" value="">Checkout</a>
+
 </div>

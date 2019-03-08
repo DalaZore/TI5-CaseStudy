@@ -59,6 +59,74 @@ class userClass
         }
     }
 
+    public function updateRate()
+    {
+        $XML=simplexml_load_file("http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml");
+
+
+        foreach($XML->Cube->Cube->Cube as $rate)
+        {
+            if($rate["currency"]=="CHF"||$rate["currency"]=="JPY"||$rate["currency"]=="USD")
+            {
+                $stmt = $this->conn->prepare("UPDATE currency SET rate=:rate WHERE currency=:currency");
+                $stmt->execute(array(':rate'=>$rate["rate"],':currency'=>$rate["currency"]));
+            }
+        }
+
+    }
+
+    public function getCurrency()
+    {
+        $stmt = $this->runQuery("SELECT * FROM customer_currency WHERE customer_id=:customer_id");
+        $stmt->execute(array(':customer_id'=>$_SESSION['user_session']));
+        $currency=$stmt->fetch(PDO::FETCH_ASSOC);
+        return $currency['currency'];
+    }
+
+    public function getRate()
+    {
+        $stmt = $this->runQuery("SELECT * FROM customer_currency WHERE customer_id=:customer_id");
+        $stmt->execute(array(':customer_id'=>$_SESSION['user_session']));
+        $currency=$stmt->fetch(PDO::FETCH_ASSOC);
+        $rate = $currency['rate'];
+        return $rate;
+    }
+
+    public function setCurrency($currency)
+    {
+        $stmt = $this->runQuery("UPDATE customer SET currency_id=:currency WHERE customer_id=:customer_id");
+        $stmt->execute(array(':customer_id'=>$_SESSION['user_session'],':currency'=>$currency));
+
+        return true;
+    }
+
+
+
+
+    public function checkShoppingCart($customer_id,$article_id)
+    {
+        try
+        {
+            $stmt = $this->conn->prepare("SELECT * FROM shopping_cart WHERE customer_id=:customer_id AND article_id=:article_id");
+            $stmt->bindparam(":customer_id", $customer_id);
+            $stmt->bindparam(":article_id", $article_id);
+            $stmt->execute();
+            $stmt->fetch(PDO::FETCH_ASSOC);
+            if($stmt->rowCount() == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
     /* User Registration */
     public function userRegistration($username,$email,$password,$gname,$surname,$address,$plz,$city)
     {
@@ -89,22 +157,53 @@ class userClass
         }
     }
 
+    public function incrementCart($customer_id,$article_id)
+    {
+        try
+        {
+
+            $stmt = $this->conn->prepare("UPDATE shopping_cart SET quantity=quantity+1 WHERE customer_id=:customer_id AND article_id=:article_id");
+
+            $stmt->bindparam(":customer_id", $customer_id);
+            $stmt->bindparam(":article_id", $article_id);
+
+
+
+            $stmt->execute();
+
+            return $stmt;
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
+    public function addToCart($customer_id,$article_id,$quantity)
+    {
+        try
+        {
+
+            $stmt = $this->conn->prepare("INSERT INTO shopping_cart(customer_id,article_id,quantity) 
+		                                               VALUES(:customer_id, :article_id, :quantity)");
+
+            $stmt->bindparam(":customer_id", $customer_id);
+            $stmt->bindparam(":article_id", $article_id);
+            $stmt->bindparam(":quantity", $quantity);
+
+
+            $stmt->execute();
+
+            return $stmt;
+        }
+        catch(PDOException $e)
+        {
+            echo $e->getMessage();
+        }
+    }
+
 
 
     /* User Details */
-    public function userDetails($customer_id)
-    {
-        try{
-            $db = getDB();
-            $stmt = $db->prepare("SELECT email,username,gname FROM customer WHERE customer_id=:customer_id");
-            $stmt->bindParam("customer_id", $customer_id,PDO::PARAM_INT);
-            $stmt->execute();
-            $data = $stmt->fetch(PDO::FETCH_OBJ); //User data
-            return $data;
-        }
-        catch(PDOException $e) {
-            echo '{"error":{"text":'. $e->getMessage() .'}}';
-        }
-    }
+
 }
-?>

@@ -23,7 +23,7 @@ $stmt->execute();
             <img src="<?php echo($userReq['picture']);?>" class="article_image"/>
             <p class="card-text"><?php echo($userReq['description']);  ?></p>
 
-            <a href="#" class="btn btn-outline-success my-2 my-sm-0">Add to Shopping Cart</a>
+            <a href="php/addtocart.php?article=<?php echo($userReq['article_id']);?>" class="btn btn-outline-success my-2 my-sm-0" value="">Add to Shopping Cart</a>
         </div>
         <div class="card-footer text-muted">
             <?php if(($userReq['stock']) <=0)

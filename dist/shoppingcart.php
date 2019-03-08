@@ -1,44 +1,35 @@
 <?php
+session_start();
+require_once("php/db_functions.php");
 $user_req = new userClass();
-$stmt = $user_req->runQuery("SELECT * FROM new_article");
-$stmt->execute();
+require_once("php/dbconnect.php");
+
+
 ?>
 
-<br/><br/>
-<div class="card text-center">
+<!doctype html>
+<html class="no-js" lang="" xmlns="http://www.w3.org/1999/html">
 
-    <div class="card-header">
-        <br/>
-        <h2>Newest Articles</h2>
-    </div>
-    <?php
+<head>
+    <?php include('header.php'); ?>
+</head>
 
-    while($userReq=$stmt->fetch(PDO::FETCH_ASSOC)){
-        ?>
+<body>
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+<![endif]-->
 
 
+<!-- Navbar begin -->
+<?php include('nav.php');?>
+<!-- Navbar End -->
 
-        <div class="card-body">
-            <h5 class="card-title"><?php echo($userReq['article_name']);  ?></h5>
-            <img src="<?php echo($userReq['picture']);?>" class="article_image"/>
 
-            <p class="card-text"><?php echo($userReq['description']);  ?></p>
+<!-- Content begin -->
+<?php include('php/shoppingcart_page.php'); ?>
 
-            <a href="shoppingcart.php?<?php echo($userReq['article_id']);?>" class="btn btn-outline-success my-2 my-sm-0" value="">Add to Shopping Cart</a>
-        </div>
-        <div class="card-footer text-muted">
-            <?php if(($userReq['stock']) <=0)
-            {
-                echo("not in Stock");
-            }
-            else
-            {
-                ?> in Stock (<?php echo($userReq['stock']);?>)
-                <?php
-            }
-            ?>
-        </div>
-        <?php
-    }
-    ?>
-</div>
+</body>
+
+<footer>
+</footer>
+</html>
