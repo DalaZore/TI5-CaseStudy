@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2019 at 05:19 PM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.3.0
+-- Erstellungszeit: 08. Mrz 2019 um 20:52
+-- Server-Version: 10.1.37-MariaDB
+-- PHP-Version: 7.3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `ti5`
+-- Datenbank: `ti5`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `article`
+-- Tabellenstruktur für Tabelle `article`
 --
 
 CREATE TABLE `article` (
@@ -36,47 +36,48 @@ CREATE TABLE `article` (
   `stock` int(11) NOT NULL,
   `picture` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `category` enum('Hardware','Software') COLLATE utf8_unicode_ci DEFAULT NULL,
-  `os` enum('Windows','Mac') COLLATE utf8_unicode_ci NOT NULL
+  `os` enum('Windows','Mac') COLLATE utf8_unicode_ci NOT NULL,
+  `status` enum('active','hidden') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `article`
+-- Daten für Tabelle `article`
 --
 
-INSERT INTO `article` (`article_id`, `article_name`, `description`, `price`, `stock`, `picture`, `category`, `os`) VALUES
-(2, 'test1', 'test123', '12.50', 11, 'img\\articles\\magnet_1.jpg', 'Hardware', 'Windows'),
-(4, 'test2', 'test123', '11.50', 11, 'img\\articles\\magnet_1.jpg', 'Hardware', 'Windows'),
-(5, 'test3', 'test123', '102.50', 11, 'img\\articles\\magnet_1.jpg', 'Hardware', 'Windows'),
-(6, 'test4', 'test123', '12.50', 0, 'img\\articles\\magnet_1.jpg', 'Software', 'Mac'),
-(7, 'test5', 'test123', '122.50', 11, 'img\\articles\\magnet_1.jpg', 'Hardware', 'Mac'),
-(8, 'test6', 'test123', '12.50', 11, 'img\\articles\\magnet_1.jpg', 'Software', 'Windows');
+INSERT INTO `article` (`article_id`, `article_name`, `description`, `price`, `stock`, `picture`, `category`, `os`, `status`) VALUES
+(2, 'test1', 'test123', '12.50', 11, 'img\\articles\\magnet_1.jpg', 'Hardware', 'Windows', 'active'),
+(4, 'test2', 'test123', '11.50', 11, 'img\\articles\\magnet_1.jpg', 'Hardware', 'Windows', 'active'),
+(5, 'test3', 'test123', '102.50', 11, 'img\\articles\\magnet_1.jpg', 'Hardware', 'Windows', 'active'),
+(6, 'test4', 'test123', '12.50', 0, 'img\\articles\\magnet_1.jpg', 'Software', 'Mac', 'active'),
+(7, 'test5', 'test123', '122.50', 11, 'img\\articles\\magnet_1.jpg', 'Hardware', 'Mac', 'active'),
+(8, 'test6', 'test123', '12.50', 11, 'img\\articles\\magnet_1.jpg', 'Software', 'Windows', 'active');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `currency`
+-- Tabellenstruktur für Tabelle `currency`
 --
 
 CREATE TABLE `currency` (
   `currency_id` int(11) NOT NULL,
   `currency` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `rate` float NOT NULL
+  `rate` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `currency`
+-- Daten für Tabelle `currency`
 --
 
 INSERT INTO `currency` (`currency_id`, `currency`, `rate`) VALUES
-(1, 'EUR', 1),
-(2, 'CHF', 1.1324),
-(3, 'USD', 1.1222),
-(4, 'JPY', 124.72);
+(1, 'EUR', '1.00'),
+(2, 'CHF', '1.13'),
+(3, 'USD', '1.12'),
+(4, 'JPY', '124.72');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customer`
+-- Tabellenstruktur für Tabelle `customer`
 --
 
 CREATE TABLE `customer` (
@@ -93,31 +94,33 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `customer`
+-- Daten für Tabelle `customer`
 --
 
 INSERT INTO `customer` (`customer_id`, `username`, `email`, `pass`, `gname`, `surname`, `address`, `plz`, `city`, `currency_id`) VALUES
 (3, 'test1', 'test1@test1.ch', '$2y$10$YR3a6yv4r3Rc0fUwnKtKZe0pIYdAeprZM9nKC3Sr5Z7gpTrlN7i8u', 'test1', 'test1', 'test1', 1, 'test1', 3),
-(4, 'test2', 'test2@test2.ch', '$2y$10$hUb7pDxOdmyqtnaWFd7xeu5qduSNFhvpq0HCIZJ1rHIOknGW9mC06', 'test2', 'test2', 'test2', 2, 'test2', 4);
+(4, 'test2', 'test2@test2.ch', '$2y$10$hUb7pDxOdmyqtnaWFd7xeu5qduSNFhvpq0HCIZJ1rHIOknGW9mC06', 'test2', 'test2', 'test2', 2, 'test2', 4),
+(5, 'Luca', 'l.colagiorgio@dhdhsdh.ch', '$2y$10$qoqqNUoqF/MnPeDzlNk7mu1dLmRhYIGPUlZOqB.YvkQNZFW92P9GS', 'Luca', 'Colagiorgio', 'Im Dreispitz 4', 8152, 'Glattbrugg', 3),
+(6, 'alert(\'\');', 'dasdasd@asdasd.ch', '$2y$10$Zpsi4JHT32DGsSu19qD3F.W8IkKJnhayOVyyGqZLk9M3KSaHfvUoy', 'asd', 'asd', 'asd', 2, 'asd', 1);
 
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `customer_currency`
--- (See below for the actual view)
+-- Stellvertreter-Struktur des Views `customer_currency`
+-- (Siehe unten für die tatsächliche Ansicht)
 --
 CREATE TABLE `customer_currency` (
 `customer_id` int(255)
 ,`currency_id` int(11)
 ,`currency` varchar(10)
-,`rate` float
+,`rate` decimal(10,2)
 );
 
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `hardware`
--- (See below for the actual view)
+-- Stellvertreter-Struktur des Views `hardware`
+-- (Siehe unten für die tatsächliche Ansicht)
 --
 CREATE TABLE `hardware` (
 `article_id` int(255)
@@ -133,8 +136,8 @@ CREATE TABLE `hardware` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `hardware_mac`
--- (See below for the actual view)
+-- Stellvertreter-Struktur des Views `hardware_mac`
+-- (Siehe unten für die tatsächliche Ansicht)
 --
 CREATE TABLE `hardware_mac` (
 `article_id` int(255)
@@ -150,8 +153,8 @@ CREATE TABLE `hardware_mac` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `hardware_windows`
--- (See below for the actual view)
+-- Stellvertreter-Struktur des Views `hardware_windows`
+-- (Siehe unten für die tatsächliche Ansicht)
 --
 CREATE TABLE `hardware_windows` (
 `article_id` int(255)
@@ -167,7 +170,7 @@ CREATE TABLE `hardware_windows` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nachbestellungen`
+-- Tabellenstruktur für Tabelle `nachbestellungen`
 --
 
 CREATE TABLE `nachbestellungen` (
@@ -180,8 +183,8 @@ CREATE TABLE `nachbestellungen` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `new_article`
--- (See below for the actual view)
+-- Stellvertreter-Struktur des Views `new_article`
+-- (Siehe unten für die tatsächliche Ansicht)
 --
 CREATE TABLE `new_article` (
 `article_id` int(255)
@@ -196,8 +199,46 @@ CREATE TABLE `new_article` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `shoppingcart_info`
--- (See below for the actual view)
+-- Tabellenstruktur für Tabelle `orderlist`
+--
+
+CREATE TABLE `orderlist` (
+  `order_id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `article_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `shipment` date NOT NULL,
+  `price` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `orderlist`
+--
+
+INSERT INTO `orderlist` (`order_id`, `customer_id`, `article_id`, `quantity`, `shipment`, `price`) VALUES
+(17, 4, 8, 3, '2019-03-15', '13.00'),
+(18, 4, 7, 1, '2019-03-15', '123.00');
+
+-- --------------------------------------------------------
+
+--
+-- Stellvertreter-Struktur des Views `order_detail`
+-- (Siehe unten für die tatsächliche Ansicht)
+--
+CREATE TABLE `order_detail` (
+`order_id` int(11)
+,`article_name` varchar(200)
+,`customer_id` int(11)
+,`quantity` int(11)
+,`shipment` date
+,`price` decimal(20,2)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stellvertreter-Struktur des Views `shoppingcart_info`
+-- (Siehe unten für die tatsächliche Ansicht)
 --
 CREATE TABLE `shoppingcart_info` (
 `customer_id` int(255)
@@ -212,7 +253,7 @@ CREATE TABLE `shoppingcart_info` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `shopping_cart`
+-- Tabellenstruktur für Tabelle `shopping_cart`
 --
 
 CREATE TABLE `shopping_cart` (
@@ -220,23 +261,14 @@ CREATE TABLE `shopping_cart` (
   `customer_id` int(11) NOT NULL,
   `article_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL,
-  `price` int(11) NOT NULL
+  `price` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `shopping_cart`
---
-
-INSERT INTO `shopping_cart` (`id`, `customer_id`, `article_id`, `quantity`, `price`) VALUES
-(1, 4, 8, 4, 0),
-(4, 4, 7, 2, 0),
-(5, 4, 6, 2, 0);
 
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `software`
--- (See below for the actual view)
+-- Stellvertreter-Struktur des Views `software`
+-- (Siehe unten für die tatsächliche Ansicht)
 --
 CREATE TABLE `software` (
 `article_id` int(255)
@@ -252,8 +284,8 @@ CREATE TABLE `software` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `software_mac`
--- (See below for the actual view)
+-- Stellvertreter-Struktur des Views `software_mac`
+-- (Siehe unten für die tatsächliche Ansicht)
 --
 CREATE TABLE `software_mac` (
 `article_id` int(255)
@@ -269,8 +301,8 @@ CREATE TABLE `software_mac` (
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `software_windows`
--- (See below for the actual view)
+-- Stellvertreter-Struktur des Views `software_windows`
+-- (Siehe unten für die tatsächliche Ansicht)
 --
 CREATE TABLE `software_windows` (
 `article_id` int(255)
@@ -286,7 +318,7 @@ CREATE TABLE `software_windows` (
 -- --------------------------------------------------------
 
 --
--- Structure for view `customer_currency`
+-- Struktur des Views `customer_currency`
 --
 DROP TABLE IF EXISTS `customer_currency`;
 
@@ -295,7 +327,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `hardware`
+-- Struktur des Views `hardware`
 --
 DROP TABLE IF EXISTS `hardware`;
 
@@ -304,7 +336,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `hardware_mac`
+-- Struktur des Views `hardware_mac`
 --
 DROP TABLE IF EXISTS `hardware_mac`;
 
@@ -313,7 +345,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `hardware_windows`
+-- Struktur des Views `hardware_windows`
 --
 DROP TABLE IF EXISTS `hardware_windows`;
 
@@ -322,7 +354,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `new_article`
+-- Struktur des Views `new_article`
 --
 DROP TABLE IF EXISTS `new_article`;
 
@@ -331,7 +363,16 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `shoppingcart_info`
+-- Struktur des Views `order_detail`
+--
+DROP TABLE IF EXISTS `order_detail`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `order_detail`  AS  select `orderlist`.`order_id` AS `order_id`,`article`.`article_name` AS `article_name`,`orderlist`.`customer_id` AS `customer_id`,`orderlist`.`quantity` AS `quantity`,`orderlist`.`shipment` AS `shipment`,(`orderlist`.`price` * `orderlist`.`quantity`) AS `price` from (`orderlist` join `article`) where (`orderlist`.`article_id` = `article`.`article_id`) ;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur des Views `shoppingcart_info`
 --
 DROP TABLE IF EXISTS `shoppingcart_info`;
 
@@ -340,7 +381,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `software`
+-- Struktur des Views `software`
 --
 DROP TABLE IF EXISTS `software`;
 
@@ -349,7 +390,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `software_mac`
+-- Struktur des Views `software_mac`
 --
 DROP TABLE IF EXISTS `software_mac`;
 
@@ -358,31 +399,31 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
--- Structure for view `software_windows`
+-- Struktur des Views `software_windows`
 --
 DROP TABLE IF EXISTS `software_windows`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `software_windows`  AS  select `article`.`article_id` AS `article_id`,`article`.`article_name` AS `article_name`,`article`.`description` AS `description`,`article`.`price` AS `price`,`article`.`stock` AS `stock`,`article`.`picture` AS `picture`,`article`.`category` AS `category`,`article`.`os` AS `os` from `article` where ((`article`.`category` = 'Software') and (`article`.`os` = 'Windows')) ;
 
 --
--- Indexes for dumped tables
+-- Indizes der exportierten Tabellen
 --
 
 --
--- Indexes for table `article`
+-- Indizes für die Tabelle `article`
 --
 ALTER TABLE `article`
   ADD PRIMARY KEY (`article_id`),
   ADD UNIQUE KEY `article_name` (`article_name`);
 
 --
--- Indexes for table `currency`
+-- Indizes für die Tabelle `currency`
 --
 ALTER TABLE `currency`
   ADD PRIMARY KEY (`currency_id`);
 
 --
--- Indexes for table `customer`
+-- Indizes für die Tabelle `customer`
 --
 ALTER TABLE `customer`
   ADD PRIMARY KEY (`customer_id`),
@@ -390,14 +431,20 @@ ALTER TABLE `customer`
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `nachbestellungen`
+-- Indizes für die Tabelle `nachbestellungen`
 --
 ALTER TABLE `nachbestellungen`
   ADD PRIMARY KEY (`nachbestell_id`),
   ADD KEY `article_id` (`article_id`);
 
 --
--- Indexes for table `shopping_cart`
+-- Indizes für die Tabelle `orderlist`
+--
+ALTER TABLE `orderlist`
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indizes für die Tabelle `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
   ADD PRIMARY KEY (`id`),
@@ -405,39 +452,45 @@ ALTER TABLE `shopping_cart`
   ADD KEY `article_id` (`article_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT für exportierte Tabellen
 --
 
 --
--- AUTO_INCREMENT for table `article`
+-- AUTO_INCREMENT für Tabelle `article`
 --
 ALTER TABLE `article`
   MODIFY `article_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `customer`
+-- AUTO_INCREMENT für Tabelle `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `customer_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `shopping_cart`
+-- AUTO_INCREMENT für Tabelle `orderlist`
+--
+ALTER TABLE `orderlist`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT für Tabelle `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
--- Constraints for dumped tables
+-- Constraints der exportierten Tabellen
 --
 
 --
--- Constraints for table `nachbestellungen`
+-- Constraints der Tabelle `nachbestellungen`
 --
 ALTER TABLE `nachbestellungen`
   ADD CONSTRAINT `fk_article_id` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`);
 
 --
--- Constraints for table `shopping_cart`
+-- Constraints der Tabelle `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
   ADD CONSTRAINT `shopping_cart_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`),
