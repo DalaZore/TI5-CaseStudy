@@ -2,6 +2,7 @@
 $article = $_GET['article'];
 $quantity = 1;
 
+
 session_start();
 require_once("php/db_functions.php");
 $user_req = new userClass();

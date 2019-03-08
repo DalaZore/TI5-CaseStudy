@@ -109,6 +109,9 @@
                     </ul>
                 </div>
             </li>
+          <li class="nav-item active">
+            <a href="logout.php" class="btn btn-outline-success my-2 my-sm-0">Logout</a>
+          </li>
         </ul>
     </div>
 </nav>

@@ -2,6 +2,14 @@
 $user_req = new userClass();
 $stmt = $user_req->runQuery("SELECT * FROM software_mac");
 $stmt->execute();
+
+if($user_req->is_loggedin()){
+  $rate = $user_req->getRate();
+}
+else{
+  $rate=1;
+}
+
 ?>
 
 <br/><br/>
@@ -36,6 +44,7 @@ $stmt->execute();
                 <?php
             }
             ?>
+          <br/> Price: <?php echo($userReq['price']*$rate);?> <?php echo($user_req->getCurrency());?>
         </div>
         <?php
     }
